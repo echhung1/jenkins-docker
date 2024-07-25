@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  jenkins:
+    build: .
+    container_name: jenkins-master
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - /SOMEWHERE/ON/YOUR/MACHINE:/var/jenkins_home
+    environment:
+      - JENKINS_URL=http://jenkins:8080
+    networks:
+      - jenkins-network
+
+networks:
+  jenkins-network:
+    driver: bridge
